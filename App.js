@@ -1,30 +1,42 @@
 import { useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, TextInput, Button } from 'react-native';
+import { Formula, FormulaHelpers } from './vdotCalc';
 
 export default function App() {
-  const [inputText, setInputText] = useState('');
+  const [inputTextTime, setInputTextTime] = useState('');
+  const [inputTextDistance, setInputTextDistance] = useState('');
   const [outputText, setOutputText] = useState('');
 
-  const handleInputChange = (text) => {
-    setInputText(text);
+  const handleTimeChange = (text) => {
+    setInputTextTime(text);
+  };
+  
+  const handleDistanceChange = (text) => {
+    setInputTextDistance(text);
   };
 
   const handleButtonClick = () => {
-    // Perform some processing on the input text
-    const processedText = processInputText(inputText);
+    // Calculate VDOT
+    const VDOT = processInputText(inputTextTime, inputTextDistance);
 
     // Update the output text
-    setOutputText(processedText);
+    setOutputText(VDOT);
   };
 
   return (
     <View style={styles.container}>
-      <Text>Open up Apps.js to start working on your app!</Text>
+      <Text>Time:</Text>
       <TextInput
         style={styles.input}
-        value={inputText}
-        onChangeText={handleInputChange}
+        value={inputTextTime}
+        onChangeText={handleTimeChange}
+      />
+      <Text>Distance (meters):</Text>
+      <TextInput
+        style={styles.input}
+        value={inputTextDistance}
+        onChangeText={handleDistanceChange}
       />
       <Button title="Calculate VDOT" onPress={handleButtonClick} />
       <Text>{outputText}</Text>
@@ -34,15 +46,16 @@ export default function App() {
 }
 
 
-const processInputText = (inputText) => {
-  // time = inputText.split(":").slice().reverse().reduce((acc, time, index) => {
-  //   return acc + time * Math.pow(60, index);
-  // });
-  let time = inputText.split(":").reverse().reduce((acc, time, index) => {
-    return parseFloat(acc) + time * Math.pow(60, index);
-  });
+const processInputText = (inputTextTime, inputTextDistance) => {
+  let time = inputTextTime.split(":").reverse().reduce((acc, time, index) => {
+    return parseFloat(acc) + time * Math.pow(60, index-1);
+  }, 0); // Initial value of 0 so callback is called on each element of the array
+  let distance = parseFloat(inputTextDistance);
 
-  return time;
+  // Calculate VDOT
+  const VDOT = Formula.getVDOT(distance, time);
+
+  return VDOT;
 };
 
 const styles = StyleSheet.create({

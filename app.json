@@ -14,8 +14,10 @@
     "assetBundlePatterns": [
       "**/*"
     ],
+    "jsengine": "hermes",
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "jsengine": "jsc"
     },
     "android": {
       "adaptiveIcon": {
