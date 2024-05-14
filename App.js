@@ -137,7 +137,7 @@ const Workout = (inputTextWorkout) => {
           <tr>
             <th>Athlete</th>
             {inputTextWorkout.inputTextWorkout.split(" ").map(block => {
-              return <th key={block}>{block.split("x")[1]}</th>;
+              return (<th key={block}>{block.split("x")[1]}</th>);
             })}
           </tr>
         </thead>
