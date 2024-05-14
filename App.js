@@ -1,76 +1,61 @@
 import { useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, TextInput, Button } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { Formula, FormulaHelpers } from './vdotCalc';
 
-export default function App() {
-  const [inputTextTime, setInputTextTime] = useState('');
-  const [inputTextDistance, setInputTextDistance] = useState('');
-  const [outputText, setOutputText] = useState('');
-
-  const handleTimeChange = (text) => {
-    setInputTextTime(text);
-  };
-  
-  const handleDistanceChange = (text) => {
-    setInputTextDistance(text);
-  };
-
-  const handleButtonClick = () => {
-    // Calculate VDOT
-    const VDOT = processInputText(inputTextTime, inputTextDistance);
-
-    // Update the output text
-    setOutputText(VDOT);
-  };
+function HomeScreen({ navigation }) {
 
   return (
     <View style={styles.container}>
-      <Text>Time:</Text>
-      <TextInput
-        style={styles.input}
-        value={inputTextTime}
-        onChangeText={handleTimeChange}
-      />
-      <Text>Distance (meters):</Text>
-      <TextInput
-        style={styles.input}
-        value={inputTextDistance}
-        onChangeText={handleDistanceChange}
-      />
-      <Button title="Calculate VDOT" onPress={handleButtonClick} />
-      <Text>{outputText}</Text>
+      <Text>Home Screen</Text>
+      <Button title="Roster" onPress={() => navigation.navigate('Roster')} />
+      <Button title="Workout" onPress={() => navigation.navigate('Workout')} />
       <StatusBar style="auto" />
     </View>
   );
 }
 
+function RosterScreen() {
 
-const processInputText = (inputTextTime, inputTextDistance) => {
-  let time = inputTextTime.split(":").reverse().reduce((acc, time, index) => {
-    return parseFloat(acc) + time * Math.pow(60, index-1);
-  }, 0); // Initial value of 0 so callback is called on each element of the array
-  let distance = parseFloat(inputTextDistance);
+  return (
+    <View style={styles.container}>
+      <Text>Roster Screen</Text>
+      <StatusBar style="auto" />
+    </View>
+  );
+}
 
-  // Calculate VDOT
-  const VDOT = Formula.getVDOT(distance, time);
+function WorkoutScreen() {
+  
+  return (
+    <View style={styles.container}>
+      <Text>Workout Screen</Text>
+      <StatusBar style="auto" />
+    </View>
+  );
+}
 
-  return VDOT;
-};
+const Stack = createNativeStackNavigator();
+
+export default function App() {
+
+  return (
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="Home">
+        <Stack.Screen name="Home" component={HomeScreen} />
+        <Stack.Screen name="Roster" component={RosterScreen} />
+        <Stack.Screen name="Workout" component={WorkoutScreen} />
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
+}
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
-  },
-  input: {
-    height: 40,
-    width: '80%',
-    borderColor: 'gray',
-    borderWidth: 1,
-    marginBottom: 10,
-    paddingHorizontal: 10,
-  },
+  }
 });
