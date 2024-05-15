@@ -1,5 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
-import { Text, View, Button, TextInput } from 'react-native';
+import { Text, View, Button, TextInput, FlatList, KeyboardAvoidingView, Platform } from 'react-native';
+import { useHeaderHeight } from '@react-navigation/elements'
 import { useState, useEffect } from 'react';
 import { styles } from '../constants/styles'
 import { storeDataObject, storeDataString, getDataObject, getDataString } from '../store/store';
@@ -40,16 +41,34 @@ export default function RosterScreen() {
     setShowAthleteForm(false);
   }
 
+  const AthleteItem = ({ athlete }) => {
+    return (
+      <View style={ styles.listItem }>
+        <Text>{athlete.firstName} {athlete.lastName}</Text>
+      </View>
+    )
+  }
+
   return (
     <View style={styles.container}>
-      <Text>nextId: {nextId}</Text>
-      {athletes && athletes.map((athlete) => <Text key={athlete.id}>{athlete.firstName} {athlete.lastName}</Text>)}
-      {!showAthleteForm && <Button title="Add Athlete" onPress={() => setShowAthleteForm(true)} />}
-      {showAthleteForm && <AthleteForm athletes={athletes} onSubmit={addAthlete} />}
-      <Button title="Clear Roster" onPress={() => storeDataObject('athletes', [])} />
-      <Button title="Clear nextId" onPress={() => storeDataString('nextId', 0)} />
-      <Button title="Clear All" onPress={() => AsyncStorage.clear()} />
       <StatusBar style="auto" />
+      <Text>nextId: {nextId}</Text>
+      {/* {athletes.map((athlete) => <Text key={athlete.id}>{athlete.firstName} {athlete.lastName}</Text>)} */}
+      <FlatList
+        data={athletes}
+        renderItem={({ item }) => <AthleteItem athlete={item} />}
+        keyExtractor={athlete => athlete.id}>
+      </FlatList>
+      <KeyboardAvoidingView 
+        behavior={Platform.OS === 'ios' ? 'padding' : 'height'} 
+        style={styles.container}
+        keyboardVerticalOffset={useHeaderHeight()}>
+        {!showAthleteForm && <Button title="Add Athlete" onPress={() => setShowAthleteForm(true)} />}
+        {showAthleteForm && <AthleteForm athletes={athletes} onSubmit={addAthlete} />}
+        <Button title="Clear Roster" onPress={() => storeDataObject('athletes', [])} />
+        <Button title="Clear nextId" onPress={() => storeDataString('nextId', '0')} />
+        <Button title="Clear All" onPress={() => AsyncStorage.clear()} />
+      </KeyboardAvoidingView>
     </View>
   );
 }
