@@ -6,8 +6,8 @@ export default function WorkoutScreen() {
 
   return (
     <View style={styles.container}>
-      <Text>Workout Screen</Text>
       <StatusBar style="auto" />
+      <Text>Workout Screen</Text>
     </View>
   );
 }
