@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import { Text, View, Button, TextInput, FlatList, KeyboardAvoidingView, Platform, Pressable } from 'react-native';
+import { Text, View, Button, FlatList, KeyboardAvoidingView, Platform } from 'react-native';
 import { useHeaderHeight } from '@react-navigation/elements'
 import { useState, useEffect } from 'react';
 import { styles } from '../constants/styles'
@@ -17,7 +17,7 @@ export default function RosterScreen() {
   useEffect(() => {
     const fetchData = async () => {
       let res = await getDataObject('athletes');
-      if (Array.isArray(res)) {
+      if (Array.isArray(res)) { // Type safety so athletes will always be an array
         setAthletes(res);
       }
       res = await getDataString('nextId');
@@ -29,12 +29,12 @@ export default function RosterScreen() {
     fetchData();
   }, []); // empty dependency array means only run once when component mounts
 
-  async function addAthlete(firstName, lastName) {
+  const addAthlete = async (firstName, lastName) => {
     const newAthletes = [...athletes, {
       id: nextId,
       firstName: firstName,
       lastName: lastName,
-      prs: []
+      prs: [] // Initialize as empty array so it can be accessed for adding prs later
     }];
     setAthletes(newAthletes);
     await storeDataObject('athletes', newAthletes);
@@ -43,10 +43,11 @@ export default function RosterScreen() {
     setShowAthleteForm(false);
   }
 
-  async function setPrs(athleteId, prs) {
+  const setPrs = async (athleteId, prs) => {
     const newAthletes = athletes.map(a => {
       if (a.id === athleteId) {
         return {
+          // See https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax#overriding_properties
           ...a,
           prs: prs
         };
@@ -58,9 +59,7 @@ export default function RosterScreen() {
   }
 
   const removeAthleteById = async (athleteId) => {
-      console.log('removeAthleteById');
       const newAthletes = athletes.toSpliced(athletes.findIndex(a => a.id === athleteId), 1);
-      console.log(newAthletes);
       setAthletes(newAthletes);
       await storeDataObject('athletes', newAthletes);
   }
@@ -68,24 +67,28 @@ export default function RosterScreen() {
   return (
     <View style={styles.container}>
       <StatusBar style="auto" />
+      {/* Keeping below to demo settings styling for possibility of pressables in that area */}
       {/* <View style={styles.settings}>
         <Button title="Show PR's" onPress={() => console.log('Show PRs')} />
         <Button title="Edit Roster" onPress={() => console.log('Edit Roster')} />
       </View> */}
-      <Text>nextId: {nextId}</Text>
-      {/* {athletes.map((athlete) => <Text key={athlete.id}>{athlete.firstName} {athlete.lastName}</Text>)} */}
+      <Text>nextId: {nextId}</Text> {/* Debugging */}
       <FlatList
         data={athletes}
-        renderItem={({ item }) => <AthleteItem athletes={athletes} athlete={item} setPrs={setPrs} removeAthleteById={removeAthleteById}/>}
+        // I think I had trouble calling the parameter anything other than item here
+        // Also note passing props, felt excessive but being verbose is ok to show dependencies I suppose
+        renderItem={({ item }) => <AthleteItem athlete={item} setPrs={setPrs} removeAthleteById={removeAthleteById}/>}
         numColumns={1} // Flexibility later?
         keyExtractor={athlete => athlete.id}>
       </FlatList>
       <KeyboardAvoidingView 
         behavior={Platform.OS === 'ios' ? 'padding' : 'height'} 
         style={styles.container}
-        keyboardVerticalOffset={useHeaderHeight()}>
+        // Below is necessary for this to work at all with the status bar
+        keyboardVerticalOffset={useHeaderHeight()}> 
         {!showAthleteForm && <Button title="Add Athlete" onPress={() => setShowAthleteForm(true)} />}
         {showAthleteForm && <AthleteForm athletes={athletes} onSubmit={addAthlete} />}
+        {/* Debug buttons below */}
         <Button title="Clear Roster" onPress={() => storeDataObject('athletes', [])} />
         <Button title="Clear nextId" onPress={() => storeDataString('nextId', '0')} />
         <Button title="Clear All" onPress={() => AsyncStorage.clear()} />

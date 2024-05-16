@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { TextInput, Button, View, Platform } from 'react-native';
 import { styles } from '../constants/styles';
 
-export default function AthleteForm({ athletes, onSubmit }) {
+export default function AthleteForm({ onSubmit }) {
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
 

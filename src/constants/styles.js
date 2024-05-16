@@ -15,7 +15,7 @@ export const styles = StyleSheet.create({
     width: 200,
   },
 
-  settings: {
+  settings: { // Not currently in use, but search for application in commented code in RosterScreen.js
     position: 'absolute',
     top: 20,
     right: 20,

@@ -1,5 +1,7 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
+// Keeping all these debug statements around, might be helpful in future
+
 export const storeDataObject = async (key, value) => {
     console.debug('storeDataObject', value);
     try {

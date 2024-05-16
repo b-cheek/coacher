@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import { Text, Pressable, FlatList, TextInput, Button } from 'react-native';
 import { styles } from '../constants/styles';
-import { storeDataObject } from '../store/store';
 
-export default AthleteItem = ({ athlete, setPrs, removeAthleteById }) => {
+export default function AthleteItem({ athlete, setPrs, removeAthleteById }) {
     const [expanded, setExpanded] = useState(false);
     const [showPRForm, setShowPRForm] = useState(false);
     const [distance, setDistance] = useState('');
@@ -23,6 +22,8 @@ export default AthleteItem = ({ athlete, setPrs, removeAthleteById }) => {
             }
             {expanded &&
                 <Pressable>
+                    {/* Having nested pressable like this prevents clicks inside it from toggling expanded state in parent pressable
+                    Maybe I should abstract a PRForm? This is already short, idk if another tiny component is necessary. Also would require passing props again. */}
                     {!showPRForm && <Button title="Add PR" onPress={() => setShowPRForm(true)} />}
                     {showPRForm && <TextInput placeholder="Distance (meters)" onChangeText={text => setDistance(text)} />}
                     {showPRForm && <TextInput placeholder="Time" onChangeText={text => setTime(text)} />}
@@ -34,11 +35,6 @@ export default AthleteItem = ({ athlete, setPrs, removeAthleteById }) => {
                     <Button title="Delete" onPress={() => removeAthleteById(athlete.id)} />
                 </Pressable>
             }
-            {/* {expanded && !showPRForm && <Button title="Add PR" onPress={() => setShowPRForm(true)} />}
-        {showPRForm && <TextInput placeholder="Distance (meters)" onChangeText={text => setDistance(text)}/>}
-        {showPRForm && <TextInput placeholder="Time" onChangeText={text => setTime(text)}/>}
-        {showPRForm && <Button title="Submit" onPress={addPR} />}
-        {expanded && <Button title="Delete" onPress={removeAthleteById} />} */}
         </Pressable>
     )
 }
