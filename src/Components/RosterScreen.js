@@ -5,6 +5,7 @@ import { useState, useEffect } from 'react';
 import { styles } from '../constants/styles'
 import { storeDataObject, storeDataString, getDataObject, getDataString } from '../store/store';
 import AthleteForm from './AthleteForm';
+import AthleteItem from './AthleteItem';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
@@ -32,7 +33,8 @@ export default function RosterScreen() {
     const newAthletes = [...athletes, {
       id: nextId,
       firstName: firstName,
-      lastName: lastName
+      lastName: lastName,
+      prs: []
     }];
     setAthletes(newAthletes);
     await storeDataObject('athletes', newAthletes);
@@ -41,16 +43,26 @@ export default function RosterScreen() {
     setShowAthleteForm(false);
   }
 
-  const AthleteItem = ({ athlete }) => {
-    const [expanded, setExpanded] = useState(false);
+  async function setPrs(athleteId, prs) {
+    const newAthletes = athletes.map(a => {
+      if (a.id === athleteId) {
+        return {
+          ...a,
+          prs: prs
+        };
+      }
+      return a;
+    });
+    setAthletes(newAthletes);
+    await storeDataObject('athletes', newAthletes);
+  }
 
-    return (
-      <Pressable onPress={ () => setExpanded(!expanded) } style={ styles.listItemContainer }>
-        <Text numberOfLines={1} style={ styles.listItemText }>{athlete.firstName} {athlete.lastName}</Text>
-        {expanded && <Text>{athlete.id}</Text>}
-        
-      </Pressable>
-    )
+  const removeAthleteById = async (athleteId) => {
+      console.log('removeAthleteById');
+      const newAthletes = athletes.toSpliced(athletes.findIndex(a => a.id === athleteId), 1);
+      console.log(newAthletes);
+      setAthletes(newAthletes);
+      await storeDataObject('athletes', newAthletes);
   }
 
   return (
@@ -64,7 +76,7 @@ export default function RosterScreen() {
       {/* {athletes.map((athlete) => <Text key={athlete.id}>{athlete.firstName} {athlete.lastName}</Text>)} */}
       <FlatList
         data={athletes}
-        renderItem={({ item }) => <AthleteItem athlete={item} />}
+        renderItem={({ item }) => <AthleteItem athletes={athletes} athlete={item} setPrs={setPrs} removeAthleteById={removeAthleteById}/>}
         numColumns={1} // Flexibility later?
         keyExtractor={athlete => athlete.id}>
       </FlatList>
