@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Text, Pressable, FlatList, TextInput, Button } from "react-native";
 import { styles } from "../constants/styles";
 
-export default function AthleteItem({ athlete, setPrs, removeAthleteById }) {
+export default function AthleteItem({ athlete, addPR, removeAthleteById, setVDOT}) {
   const [expanded, setExpanded] = useState(false);
   const [showPRForm, setShowPRForm] = useState(false);
   const [distance, setDistance] = useState("");
@@ -21,10 +21,13 @@ export default function AthleteItem({ athlete, setPrs, removeAthleteById }) {
         <FlatList
           data={athlete.prs}
           renderItem={({ item }) => (
-            <Text>
-              {item.distance.toString()}: {item.time.toString()}
-            </Text>
+            <Pressable onPress={() => setVDOT(athlete, item)}>
+              <Text style={item.workoutBasis && {fontWeight: 'bold'}}>
+                {item.distance.toString()}: {item.time.toString()}
+              </Text>
+            </Pressable>
           )}
+          keyExtractor={(item) => item.id}
         ></FlatList>
       ) : null}
       {expanded ? (
@@ -50,10 +53,7 @@ export default function AthleteItem({ athlete, setPrs, removeAthleteById }) {
             <Button
               title="Submit"
               onPress={() => {
-                setPrs(athlete.id, [
-                  ...athlete.prs,
-                  { distance: distance, time: time },
-                ]);
+                addPR(athlete.id, distance, time);
                 setShowPRForm(false);
               }}
             />

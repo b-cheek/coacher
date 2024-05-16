@@ -16,6 +16,7 @@ import {
   getDataObject,
   getDataString,
 } from "../store/store";
+import { Formula } from "../utils/vdotCalc";
 import AthleteForm from "./AthleteForm";
 import AthleteItem from "./AthleteItem";
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -23,7 +24,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 export default function RosterScreen() {
   const [showAthleteForm, setShowAthleteForm] = useState(false);
   const [athletes, setAthletes] = useState([]);
-  const [nextId, setNextId] = useState(0);
+  const [nextId, setNextId] = useState(0); // This is used to individualize athletes AND prs, since both are stored in the same 'athletes' key in localStorage
 
   useEffect(() => {
     const fetchData = async () => {
@@ -49,6 +50,7 @@ export default function RosterScreen() {
         firstName: firstName,
         lastName: lastName,
         prs: [], // Initialize as empty array so it can be accessed for adding prs later
+        VDOT: -1, // So Workout can check if VDOT has been set
       },
     ];
     setAthletes(newAthletes);
@@ -58,19 +60,41 @@ export default function RosterScreen() {
     setShowAthleteForm(false);
   };
 
-  const setPrs = async (athleteId, prs) => {
+  const addPR = async (athleteId, distance, time) => {
+    // const newAthletes = athletes.map((a) => {
+    //   if (a.id === athleteId) {
+    //     return {
+    //       // See https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax#overriding_properties
+    //       ...a,
+    //       prs: prs,
+    //     };
+    //   }
+    //   return a;
+    // });
+
     const newAthletes = athletes.map((a) => {
       if (a.id === athleteId) {
         return {
           // See https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax#overriding_properties
           ...a,
-          prs: prs,
+          prs: [
+            ...a.prs,
+            {
+              id: nextId,
+              distance: distance,
+              time: time,
+              workoutBasis: false,
+            },
+          ],
         };
       }
       return a;
     });
+
     setAthletes(newAthletes);
     await storeDataObject("athletes", newAthletes);
+    setNextId(nextId + 1);
+    await storeDataString("nextId", (nextId + 1).toString());
   };
 
   const removeAthleteById = async (athleteId) => {
@@ -82,6 +106,50 @@ export default function RosterScreen() {
     await storeDataObject("athletes", newAthletes);
   };
 
+  setVDOT = (athlete, pr) => {
+    let time = pr.time
+      .split(":")
+      .reverse()
+      .reduce((acc, time, index) => {
+        return parseFloat(acc) + time * Math.pow(60, index - 1);
+      }, 0); // Initial value of 0 so callback is called on each element of the array
+    let distance = parseFloat(pr.distance);
+
+    // Calculate VDOT
+    const VDOT = Formula.getVDOT(distance, time);
+
+    athlete.VDOT = VDOT;
+    // update new workout basis (remove old one if it exists)
+    prs = athlete.prs.map((p) => {
+      if (p.id === pr.id) {
+        return {
+          ...p,
+          workoutBasis: true,
+        };
+      }
+      else if (p.workoutBasis === true) {
+        return {
+          ...p,
+          workoutBasis: false,
+        };
+      }
+      return p;
+    });
+
+    const newAthletes = athletes.map((a) => {
+      if (a.id === athlete.id) {
+        return {
+          ...a,
+          prs: prs,
+          VDOT: athlete.VDOT,
+        };
+      }
+      return a;
+    });
+    setAthletes(newAthletes);
+    storeDataObject("athletes", newAthletes);
+  };
+
   return (
     <View style={styles.container}>
       <StatusBar style="auto" />
@@ -90,16 +158,20 @@ export default function RosterScreen() {
         <Button title="Show PR's" onPress={() => console.log('Show PRs')} />
         <Button title="Edit Roster" onPress={() => console.log('Edit Roster')} />
       </View> */}
-      {/* <Text>nextId: {nextId}</Text> */}{/* Debugging, but also maybe causing trouble with "Text strings must be rendered within a <Text> Component" error? */}
+      {/* <Text>nextId: {nextId}</Text> */}
+      {/* Debugging, but also maybe causing trouble with "Text strings must be rendered within a <Text> Component" error? */}
       {/* I think I had trouble calling the parameter anything other than item here
       Also note passing props, felt excessive but being verbose is ok to show dependencies I suppose */}
+      <Text>{JSON.stringify(athletes)}</Text>
+      {/* Above for debugging athletes, prs, remove later */}
       <FlatList
         data={athletes}
         renderItem={({ item }) => (
           <AthleteItem
             athlete={item}
-            setPrs={setPrs}
+            addPR={addPR}
             removeAthleteById={removeAthleteById}
+            setVDOT={setVDOT}
           />
         )}
         numColumns={1}
