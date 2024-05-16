@@ -7,11 +7,17 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 
-  listItem: {
+  listItemContainer: {
     padding: 10,
     marginVertical: 5,
     borderWidth: 1,
     borderRadius: 5,
-    width: 80
+    width: 200,
+  },
+
+  settings: {
+    position: 'absolute',
+    top: 20,
+    right: 20,
   }
 });

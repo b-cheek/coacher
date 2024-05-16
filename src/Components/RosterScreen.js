@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import { Text, View, Button, TextInput, FlatList, KeyboardAvoidingView, Platform } from 'react-native';
+import { Text, View, Button, TextInput, FlatList, KeyboardAvoidingView, Platform, Pressable } from 'react-native';
 import { useHeaderHeight } from '@react-navigation/elements'
 import { useState, useEffect } from 'react';
 import { styles } from '../constants/styles'
@@ -42,21 +42,30 @@ export default function RosterScreen() {
   }
 
   const AthleteItem = ({ athlete }) => {
+    const [expanded, setExpanded] = useState(false);
+
     return (
-      <View style={ styles.listItem }>
-        <Text>{athlete.firstName} {athlete.lastName}</Text>
-      </View>
+      <Pressable onPress={ () => setExpanded(!expanded) } style={ styles.listItemContainer }>
+        <Text numberOfLines={1} style={ styles.listItemText }>{athlete.firstName} {athlete.lastName}</Text>
+        {expanded && <Text>{athlete.id}</Text>}
+        
+      </Pressable>
     )
   }
 
   return (
     <View style={styles.container}>
       <StatusBar style="auto" />
+      {/* <View style={styles.settings}>
+        <Button title="Show PR's" onPress={() => console.log('Show PRs')} />
+        <Button title="Edit Roster" onPress={() => console.log('Edit Roster')} />
+      </View> */}
       <Text>nextId: {nextId}</Text>
       {/* {athletes.map((athlete) => <Text key={athlete.id}>{athlete.firstName} {athlete.lastName}</Text>)} */}
       <FlatList
         data={athletes}
         renderItem={({ item }) => <AthleteItem athlete={item} />}
+        numColumns={1} // Flexibility later?
         keyExtractor={athlete => athlete.id}>
       </FlatList>
       <KeyboardAvoidingView 
