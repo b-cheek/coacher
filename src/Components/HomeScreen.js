@@ -8,7 +8,7 @@ export default function HomeScreen({ navigation }) {
       <StatusBar style="auto" />
       <Text>Home Screen</Text>
       <Button title="Roster" onPress={() => navigation.navigate("Roster")} />
-      <Button title="Workout" onPress={() => navigation.navigate("Workout")} />
+      <Button title="Workouts" onPress={() => navigation.navigate("Workouts")} />
     </View>
   );
 }

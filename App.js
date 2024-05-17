@@ -12,7 +12,7 @@ export default function App() {
       <Stack.Navigator initialRouteName="Home">
         <Stack.Screen name="Home" component={HomeScreen} />
         <Stack.Screen name="Roster" component={RosterScreen} />
-        <Stack.Screen name="Workout" component={WorkoutScreen} />
+        <Stack.Screen name="Workouts" component={WorkoutScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
