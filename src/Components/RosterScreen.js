@@ -16,6 +16,7 @@ import {
   getDataObject,
   getDataString,
 } from "../store/store";
+import { timeStrToSeconds } from "../utils/time";
 import { Formula } from "../utils/vdotCalc";
 import AthleteForm from "./AthleteForm";
 import AthleteItem from "./AthleteItem";
@@ -107,12 +108,7 @@ export default function RosterScreen() {
   };
 
   setVDOT = (athlete, pr) => {
-    let time = pr.time
-      .split(":")
-      .reverse()
-      .reduce((acc, time, index) => {
-        return parseFloat(acc) + time * Math.pow(60, index - 1);
-      }, 0); // Initial value of 0 so callback is called on each element of the array
+    let time = timeStrToSeconds(pr.time);
     let distance = parseFloat(pr.distance);
 
     // Calculate VDOT
@@ -162,7 +158,7 @@ export default function RosterScreen() {
       {/* Debugging, but also maybe causing trouble with "Text strings must be rendered within a <Text> Component" error? */}
       {/* I think I had trouble calling the parameter anything other than item here
       Also note passing props, felt excessive but being verbose is ok to show dependencies I suppose */}
-      <Text>{JSON.stringify(athletes)}</Text>
+      {/* <Text>{JSON.stringify(athletes)}</Text> */}
       {/* Above for debugging athletes, prs, remove later */}
       <FlatList
         data={athletes}
@@ -194,7 +190,7 @@ export default function RosterScreen() {
           <AthleteForm athletes={athletes} onSubmit={addAthlete} />
         ) : null}
         {/* Debug buttons below */}
-        <Button
+        {/* <Button
           title="Clear Roster"
           onPress={() => storeDataObject("athletes", [])}
         />
@@ -202,7 +198,7 @@ export default function RosterScreen() {
           title="Clear nextId"
           onPress={() => storeDataString("nextId", "0")}
         />
-        <Button title="Clear All" onPress={() => AsyncStorage.clear()} />
+        <Button title="Clear All" onPress={() => AsyncStorage.clear()} /> */}
       </KeyboardAvoidingView>
     </View>
   );
