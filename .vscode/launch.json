@@ -7,6 +7,18 @@
       "type": "reactnative",
       "request": "launch",
       "platform": "windows"
+    },
+    {
+      "name": "Attach",
+      "port": 8081,
+      "request": "attach",
+      "skipFiles": [
+          "<node_internals>/**"
+      ],
+      "outFiles": [
+          "${workspaceFolder}/**/*"
+      ],
+      "type": "node"
     }
   ]
 }
