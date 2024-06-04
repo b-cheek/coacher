@@ -1,4 +1,5 @@
 import { StyleSheet } from "react-native";
+import { PlatformColor } from "react-native-windows";
 
 export const styles = StyleSheet.create({
   container: {
@@ -19,5 +20,9 @@ export const styles = StyleSheet.create({
     position: 'absolute',
     top: 20,
     right: 20,
+  },
+
+  systemColorBackground: {
+    backgroundColor: PlatformColor('SolidBackgroundFillColorBase'),
   }
 });
