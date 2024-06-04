@@ -19,6 +19,13 @@
           "${workspaceFolder}/**/*"
       ],
       "type": "node"
+    },
+    {
+      "name": "Debug Windows Hermes - Experimental",
+      "request": "launch",
+      "type": "reactnativedirect",
+      "cwd": "${workspaceFolder}",
+      "platform": "windows"
     }
   ]
 }

@@ -4,7 +4,12 @@ This is a new [**React Native**](https://reactnative.dev) project, bootstrapped 
 
 >**Note**: Make sure you have completed the [React Native - Environment Setup](https://reactnative.dev/docs/environment-setup) instructions till "Creating a new application" step, before proceeding.
 
-## Step 0: Run npx react-native run-windows; the following steps don't seem to work.
+## Step 0: The only debugging workaround 💀💀💀
+
+I tried various methods to fix direct debugging with vscode and landed on the following:
+
+* npx react-native run-windows
+* Follow instructions to connect chrome debugger [here](https://microsoft.github.io/react-native-windows/docs/hermes#hermes-on-windows) (just go to [chrome://inspect](chrome://inspect))
 
 ## Step 1: Start the Metro Server
 
