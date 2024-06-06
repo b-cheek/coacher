@@ -9,6 +9,7 @@ export const styles = StyleSheet.create({
   },
 
   listItemContainer: {
+    borderColor: PlatformColor('SurfaceStrokeColorDefaultBrush'),
     padding: 10,
     marginVertical: 5,
     borderWidth: 1,
@@ -22,7 +23,8 @@ export const styles = StyleSheet.create({
     right: 20,
   },
 
-  systemColorBackground: {
-    backgroundColor: PlatformColor('SolidBackgroundFillColorBase'),
+  headerStyle: {
+    backgroundColor: PlatformColor('SolidBackgroundFillColorSecondary'),
+    borderColor: PlatformColor('DividerStrokeColorDefault'),
   }
 });
