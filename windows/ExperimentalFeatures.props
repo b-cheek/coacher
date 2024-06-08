@@ -17,6 +17,11 @@
     <UseHermes>true</UseHermes>
 
     <!--
+      Enable WinUI 2.8.0 for use of WebView2 with react-native-webview.
+    -->
+    <WinUI2xVersion>2.8.0</WinUI2xVersion>
+
+    <!--
       Changes compilation to assume use of WinUI 3 instead of System XAML.
       Requires creation of new project.
 

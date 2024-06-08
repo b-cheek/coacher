@@ -19,6 +19,8 @@ import { secondsToTimeStr } from "../utils/time";
 import { styles } from "../constants/styles";
 import WorkoutForm from "./WorkoutForm";
 import WorkoutItem from "./WorkoutItem";
+import WebView from "react-native-webview";
+import MyWebView from "./MyWebView";
 
 export default function WorkoutScreen() {
   const [showWorkoutForm, setShowWorkoutForm] = useState(false);
@@ -166,7 +168,8 @@ export default function WorkoutScreen() {
       </html>
     `;
 
-    console.debug(html);
+    // console.debug(html);
+    
 
     // printToFile(html);
   };
@@ -179,6 +182,12 @@ export default function WorkoutScreen() {
 
   return (
     <View style={styles.container}>
+      <MyWebView html={"<h1>Hello World</h1>"} />
+      {/* <WebView
+        originWhitelist={['*']}
+        useWebView2={true}
+        source={{ html: '<script>alert("Hello World!");console.log("Hello, World!")</script><h1>Hello world</h1>' }}
+      /> */}
       <Text>Workout Screen</Text>
       {/* <Text>{JSON.stringify(workouts)}</Text> */}{/* Debugging workouts remove later */}
       {/* Above for debugging workouts remove later */}
