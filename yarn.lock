@@ -1764,6 +1764,19 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@dr.pogodin/react-native-fs@npm:^2.26.0":
+  version: 2.26.0
+  resolution: "@dr.pogodin/react-native-fs@npm:2.26.0"
+  dependencies:
+    buffer: ^6.0.3
+  peerDependencies:
+    react: "*"
+    react-native: "*"
+    react-native-windows: "*"
+  checksum: 41a8e5b7fa8153429ec79b6df560912fe3865ba425d6d4c9d92acc9bf5dc6d8bba536f99338eb5afe1d93998c78da30c10dafe6ba43df206f836c6542131be52
+  languageName: node
+  linkType: hard
+
 "@eslint-community/eslint-utils@npm:^4.2.0, @eslint-community/eslint-utils@npm:^4.4.0":
   version: 4.4.0
   resolution: "@eslint-community/eslint-utils@npm:4.4.0"
@@ -4043,6 +4056,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"buffer@npm:^6.0.3":
+  version: 6.0.3
+  resolution: "buffer@npm:6.0.3"
+  dependencies:
+    base64-js: ^1.3.1
+    ieee754: ^1.2.1
+  checksum: 5ad23293d9a731e4318e420025800b42bf0d264004c0286c8cc010af7a270c7a0f6522e84f54b9ad65cbd6db20b8badbfd8d2ebf4f80fa03dab093b89e68c3f9
+  languageName: node
+  linkType: hard
+
 "bytes@npm:3.0.0":
   version: 3.0.0
   resolution: "bytes@npm:3.0.0"
@@ -4314,6 +4337,7 @@ __metadata:
     "@babel/core": ^7.20.0
     "@babel/preset-env": ^7.20.0
     "@babel/runtime": ^7.20.0
+    "@dr.pogodin/react-native-fs": ^2.26.0
     "@react-native-async-storage/async-storage": ^1.23.1
     "@react-native/babel-preset": 0.74.83
     "@react-native/eslint-config": 0.74.83
@@ -6154,7 +6178,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ieee754@npm:^1.1.13":
+"ieee754@npm:^1.1.13, ieee754@npm:^1.2.1":
   version: 1.2.1
   resolution: "ieee754@npm:1.2.1"
   checksum: 5144c0c9815e54ada181d80a0b810221a253562422e7c6c3a60b1901154184f49326ec239d618c416c1c5945a2e197107aee8d986a3dd836b53dffefd99b5e7e

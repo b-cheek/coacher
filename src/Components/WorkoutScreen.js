@@ -8,6 +8,7 @@ import {
 } from "react-native";
 import { useState, useEffect } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import * as RNFS from '@dr.pogodin/react-native-fs';
 import {
   storeDataObject,
   storeDataString,
@@ -170,6 +171,15 @@ export default function WorkoutScreen() {
 
     // console.debug(html);
     
+    var path = RNFS.DownloadDirectoryPath + '/test.html'
+    // write the file
+    RNFS.writeFile(path, html, 'utf8')
+      .then((success) => {
+        console.log('FILE WRITTEN!');
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
 
     // printToFile(html);
   };
@@ -183,11 +193,11 @@ export default function WorkoutScreen() {
   return (
     <View style={styles.container}>
       <MyWebView html={"<h1>Hello World</h1>"} />
-      {/* <WebView
+      <WebView
         originWhitelist={['*']}
         useWebView2={true}
-        source={{ html: '<script>alert("Hello World!");console.log("Hello, World!")</script><h1>Hello world</h1>' }}
-      /> */}
+        // source={{ html: '<script>window.open("https://developer.mozilla.org/en-US/docs/Web/API/Window/open");console.log("test");</script><h1>Hello world</h1>' }}
+      />
       <Text>Workout Screen</Text>
       {/* <Text>{JSON.stringify(workouts)}</Text> */}{/* Debugging workouts remove later */}
       {/* Above for debugging workouts remove later */}
