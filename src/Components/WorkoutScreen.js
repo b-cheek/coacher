@@ -27,6 +27,7 @@ export default function WorkoutScreen() {
   const [showWorkoutForm, setShowWorkoutForm] = useState(false);
   const [workouts, setWorkouts] = useState([]);
   const [nextId, setNextId] = useState(0);
+  const [workoutLink, setWorkoutLink] = useState("");
   // const [selectedPrinter, setSelectedPrinter] = useState();
 
   useEffect(() => {
@@ -171,11 +172,15 @@ export default function WorkoutScreen() {
 
     // console.debug(html);
     
-    var path = RNFS.DownloadDirectoryPath + '/test.html'
+    // var path = RNFS.DownloadDirectoryPath + '/test.html'
+    var path = RNFS.DocumentDirectoryPath + '\\test.html'
+    console.log(path)
     // write the file
     RNFS.writeFile(path, html, 'utf8')
       .then((success) => {
         console.log('FILE WRITTEN!');
+        setWorkoutLink(path);
+        setWorkoutLink('google.com');
       })
       .catch((err) => {
         console.log(err.message);
@@ -196,7 +201,8 @@ export default function WorkoutScreen() {
       <WebView
         originWhitelist={['*']}
         useWebView2={true}
-        // source={{ html: '<script>window.open("https://developer.mozilla.org/en-US/docs/Web/API/Window/open");console.log("test");</script><h1>Hello world</h1>' }}
+        // source={{ html: `<script>window.open("https://github.com/microsoft/react-native-windows/issues/1576");</script>` }}
+        source={{ html: `<script>window.open("${workoutLink}");</script>` }}
       />
       <Text>Workout Screen</Text>
       {/* <Text>{JSON.stringify(workouts)}</Text> */}{/* Debugging workouts remove later */}
