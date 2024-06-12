@@ -45,8 +45,8 @@
       "folly": {
         "type": "Project",
         "dependencies": {
-          "Fmt": "[1.0.0, )",
-          "boost": "[1.76.0, )"
+          "boost": "[1.76.0, )",
+          "fmt": "[1.0.0, )"
         }
       },
       "microsoft.reactnative": {
@@ -82,6 +82,13 @@
         }
       },
       "reactnativewebview": {
+        "type": "Project",
+        "dependencies": {
+          "Microsoft.ReactNative": "[1.0.0, )",
+          "Microsoft.UI.Xaml": "[2.8.0, )"
+        }
+      },
+      "rnpermissions": {
         "type": "Project",
         "dependencies": {
           "Microsoft.ReactNative": "[1.0.0, )",

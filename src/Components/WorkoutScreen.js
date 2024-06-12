@@ -9,6 +9,7 @@ import {
 import { useState, useEffect } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import * as RNFS from '@dr.pogodin/react-native-fs';
+import {check, request, PERMISSIONS} from 'react-native-permissions';
 import {
   storeDataObject,
   storeDataString,
@@ -172,13 +173,12 @@ export default function WorkoutScreen() {
 
     // console.debug(html);
     
-    // var path = RNFS.DownloadDirectoryPath + '/test.html'
-    var path = RNFS.DocumentDirectoryPath + '\\test.html'
-    console.log(path)
+    var path = RNFS.DownloadDirectoryPath + '\\test.html'
     // write the file
+    console.log(path)
     RNFS.writeFile(path, html, 'utf8')
       .then((success) => {
-        console.log('FILE WRITTEN!');
+        console.log('FILE WRITTEN! at ', path);
         setWorkoutLink(path);
         setWorkoutLink('google.com');
       })
@@ -197,13 +197,13 @@ export default function WorkoutScreen() {
 
   return (
     <View style={styles.container}>
-      <MyWebView html={"<h1>Hello World</h1>"} />
+      {/* <MyWebView html={"<h1>Hello World</h1>"} />
       <WebView
         originWhitelist={['*']}
         useWebView2={true}
         // source={{ html: `<script>window.open("https://github.com/microsoft/react-native-windows/issues/1576");</script>` }}
         source={{ html: `<script>window.open("${workoutLink}");</script>` }}
-      />
+      />*/}
       <Text>Workout Screen</Text>
       {/* <Text>{JSON.stringify(workouts)}</Text> */}{/* Debugging workouts remove later */}
       {/* Above for debugging workouts remove later */}
