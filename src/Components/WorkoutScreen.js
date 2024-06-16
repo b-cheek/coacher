@@ -9,7 +9,6 @@ import {
 import { useState, useEffect } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import * as RNFS from '@dr.pogodin/react-native-fs';
-import {check, request, PERMISSIONS} from 'react-native-permissions';
 import {
   storeDataObject,
   storeDataString,
@@ -21,15 +20,12 @@ import { secondsToTimeStr } from "../utils/time";
 import { styles } from "../constants/styles";
 import WorkoutForm from "./WorkoutForm";
 import WorkoutItem from "./WorkoutItem";
-import WebView from "react-native-webview";
-import MyWebView from "./MyWebView";
 
 export default function WorkoutScreen() {
   const [showWorkoutForm, setShowWorkoutForm] = useState(false);
   const [workouts, setWorkouts] = useState([]);
   const [nextId, setNextId] = useState(0);
-  const [workoutLink, setWorkoutLink] = useState("");
-  // const [selectedPrinter, setSelectedPrinter] = useState();
+  const [showSuccess, setShowSuccess] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -171,22 +167,18 @@ export default function WorkoutScreen() {
       </html>
     `;
 
-    // console.debug(html);
-    
     var path = RNFS.DownloadDirectoryPath + '\\test.html'
     // write the file
     console.log(path)
     RNFS.writeFile(path, html, 'utf8')
       .then((success) => {
-        console.log('FILE WRITTEN! at ', path);
-        setWorkoutLink(path);
-        setWorkoutLink('google.com');
+        setShowSuccess(true);
+        console.debug(success);
       })
       .catch((err) => {
-        console.log(err.message);
+        console.debug(err)
       });
-
-    // printToFile(html);
+    setTimeout(() => setShowSuccess(false), 3000);
   };
 
   removeWorkoutById = async (workoutId) => {
@@ -197,13 +189,6 @@ export default function WorkoutScreen() {
 
   return (
     <View style={styles.container}>
-      {/* <MyWebView html={"<h1>Hello World</h1>"} />
-      <WebView
-        originWhitelist={['*']}
-        useWebView2={true}
-        // source={{ html: `<script>window.open("https://github.com/microsoft/react-native-windows/issues/1576");</script>` }}
-        source={{ html: `<script>window.open("${workoutLink}");</script>` }}
-      />*/}
       <Text>Workout Screen</Text>
       {/* <Text>{JSON.stringify(workouts)}</Text> */}{/* Debugging workouts remove later */}
       {/* Above for debugging workouts remove later */}
@@ -214,6 +199,7 @@ export default function WorkoutScreen() {
             workout={item}
             getTimeSheet={getTimeSheet}
             removeWorkoutById={removeWorkoutById}
+            showSuccess={showSuccess}
           />
         )}
         numColumns={1}
