@@ -26,6 +26,7 @@ export default function WorkoutScreen() {
   const [workouts, setWorkouts] = useState([]);
   const [nextId, setNextId] = useState(0);
   const [showSuccess, setShowSuccess] = useState(false);
+  const [showError, setShowError] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -167,18 +168,20 @@ export default function WorkoutScreen() {
       </html>
     `;
 
-    var path = RNFS.DownloadDirectoryPath + '\\test.html'
+    var path = RNFS.DownloadDirectoryPath + `\\${workout.title}.html`
     // write the file
-    console.log(path)
+    // console.log(path)
     RNFS.writeFile(path, html, 'utf8')
       .then((success) => {
         setShowSuccess(true);
         console.debug(success);
+        setTimeout(() => setShowSuccess(false), 3000);
       })
       .catch((err) => {
+        setShowError(true);
         console.debug(err)
+        setTimeout(() => setShowError(false), 3000);
       });
-    setTimeout(() => setShowSuccess(false), 3000);
   };
 
   removeWorkoutById = async (workoutId) => {
@@ -200,6 +203,7 @@ export default function WorkoutScreen() {
             getTimeSheet={getTimeSheet}
             removeWorkoutById={removeWorkoutById}
             showSuccess={showSuccess}
+            showError={showError}
           />
         )}
         numColumns={1}

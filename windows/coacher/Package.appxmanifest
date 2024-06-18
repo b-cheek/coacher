@@ -10,7 +10,7 @@
   <Identity
     Name="9cb7d564-d3f8-441a-a47f-de0800a3d5b2"
     Publisher="CN=bwc10"
-    Version="1.0.8.0" />
+    Version="1.0.9.0" />
 
   <mp:PhoneIdentity PhoneProductId="9cb7d564-d3f8-441a-a47f-de0800a3d5b2" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
@@ -39,7 +39,7 @@
         Square44x44Logo="Assets\Square44x44Logo.png"
         Description="coacher"
         BackgroundColor="transparent">
-        <uap:DefaultTile Wide310x150Logo="Assets\Wide310x150Logo.png"/>
+        <uap:DefaultTile Wide310x150Logo="Assets\Wide310x150Logo.png" Square71x71Logo="Assets\SmallTile.png" Square310x310Logo="Assets\LargeTile.png"/>
         <uap:SplashScreen Image="Assets\SplashScreen.png" />
       </uap:VisualElements>
     </Application>

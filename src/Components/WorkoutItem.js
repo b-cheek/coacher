@@ -7,6 +7,7 @@ export default function WorkoutItem({
   getTimeSheet,
   removeWorkoutById,
   showSuccess,
+  showError,
 }) {
   const [expanded, setExpanded] = useState(false);
 
@@ -25,7 +26,9 @@ export default function WorkoutItem({
               title="Get Time Sheet"
               onPress={() => getTimeSheet(workout)}
             />,
-            <>{showSuccess ? <Text style={{color: PlatformColor('SystemFillColorSuccessBrush')}}>Saved in Downloads folder</Text> : null}</>,
+            <>{showSuccess ? <Text style={{color: PlatformColor('SystemFillColorSuccessBrush')}}>Saved in Downloads folder</Text> 
+            : showError ? <Text style={{color: '#ff0000'}}>Error saving file; see debug console</Text>
+            : null}</>,
             <Button
               title="Remove"
               onPress={() => removeWorkoutById(workout.id)}
