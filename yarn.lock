@@ -1708,12 +1708,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/runtime@npm:^7.0.0, @babel/runtime@npm:^7.20.0, @babel/runtime@npm:^7.8.4":
+"@babel/runtime@npm:^7.0.0, @babel/runtime@npm:^7.8.4":
   version: 7.24.6
   resolution: "@babel/runtime@npm:7.24.6"
   dependencies:
     regenerator-runtime: ^0.14.0
   checksum: 44d95ca743898fed31b4cefef31de6fd3cf7906e94493368e9d6538289cc52c6c46185205d9c01d38466a5b3f673550f80892d30b1ed02a2c13e704863a8cc48
+  languageName: node
+  linkType: hard
+
+"@babel/runtime@npm:^7.24.7":
+  version: 7.24.7
+  resolution: "@babel/runtime@npm:7.24.7"
+  dependencies:
+    regenerator-runtime: ^0.14.0
+  checksum: d17f29eed6f848ac15cdf4202a910b741facfb0419a9d79e5c7fa37df6362fc3227f1cc2e248cc6db5e53ddffb4caa6686c488e6e80ce3d29c36a4e74c8734ea
   languageName: node
   linkType: hard
 
@@ -4336,7 +4345,7 @@ __metadata:
   dependencies:
     "@babel/core": ^7.20.0
     "@babel/preset-env": ^7.20.0
-    "@babel/runtime": ^7.20.0
+    "@babel/runtime": ^7.24.7
     "@dr.pogodin/react-native-fs": ^2.26.0
     "@react-native-async-storage/async-storage": ^1.23.1
     "@react-native/babel-preset": 0.74.83
@@ -4355,10 +4364,8 @@ __metadata:
     prettier: 2.8.8
     react: 18.2.0
     react-native: 0.74.1
-    react-native-permissions: ^4.1.5
     react-native-safe-area-context: ^4.10.3
     react-native-screens: "software-mansion/react-native-screens#main"
-    react-native-webview: ^13.10.3
     react-native-windows: 0.74.7
     react-test-renderer: 18.2.0
     typescript: 5.0.4
@@ -5105,17 +5112,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"escape-string-regexp@npm:2.0.0, escape-string-regexp@npm:^2.0.0":
-  version: 2.0.0
-  resolution: "escape-string-regexp@npm:2.0.0"
-  checksum: 9f8a2d5743677c16e85c810e3024d54f0c8dea6424fad3c79ef6666e81dd0846f7437f5e729dfcdac8981bc9e5294c39b4580814d114076b8d36318f46ae4395
-  languageName: node
-  linkType: hard
-
 "escape-string-regexp@npm:^1.0.5":
   version: 1.0.5
   resolution: "escape-string-regexp@npm:1.0.5"
   checksum: 6092fda75c63b110c706b6a9bfde8a612ad595b628f0bd2147eea1d3406723020810e591effc7db1da91d80a71a737a313567c5abb3813e8d9c71f4aa595b410
+  languageName: node
+  linkType: hard
+
+"escape-string-regexp@npm:^2.0.0":
+  version: 2.0.0
+  resolution: "escape-string-regexp@npm:2.0.0"
+  checksum: 9f8a2d5743677c16e85c810e3024d54f0c8dea6424fad3c79ef6666e81dd0846f7437f5e729dfcdac8981bc9e5294c39b4580814d114076b8d36318f46ae4395
   languageName: node
   linkType: hard
 
@@ -6304,7 +6311,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"invariant@npm:2.2.4, invariant@npm:^2.2.4":
+"invariant@npm:^2.2.4":
   version: 2.2.4
   resolution: "invariant@npm:2.2.4"
   dependencies:
@@ -9016,20 +9023,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-native-permissions@npm:^4.1.5":
-  version: 4.1.5
-  resolution: "react-native-permissions@npm:4.1.5"
-  peerDependencies:
-    react: ">=18.1.0"
-    react-native: ">=0.70.0"
-    react-native-windows: ">=0.70.0"
-  peerDependenciesMeta:
-    react-native-windows:
-      optional: true
-  checksum: dc4b366a0f561a47f032c027eb703a2be45e801788b915ed583e38f617eea23656eb63a77b17fb3a663fe3199b2ec25788f799e751421634e35a64f5258feed9
-  languageName: node
-  linkType: hard
-
 "react-native-safe-area-context@npm:^4.10.3":
   version: 4.10.3
   resolution: "react-native-safe-area-context@npm:4.10.3"
@@ -9050,19 +9043,6 @@ __metadata:
     react: "*"
     react-native: "*"
   checksum: 822d73ae8753faf711eaf726c508eb4d70266d5444c2cb299c1eb76c332464aad2ee2c56fa4b24b04bf636db9da74aa406de7e5ebfeda0f536d5ce1e04421df5
-  languageName: node
-  linkType: hard
-
-"react-native-webview@npm:^13.10.3":
-  version: 13.10.3
-  resolution: "react-native-webview@npm:13.10.3"
-  dependencies:
-    escape-string-regexp: 2.0.0
-    invariant: 2.2.4
-  peerDependencies:
-    react: "*"
-    react-native: "*"
-  checksum: 333e940a2af300c7151106737cd812f102efd7e872286ce922290c2a0044e736ba86abab0841df591f42628017897344ab549ba6205471a44f74baff8bf196b1
   languageName: node
   linkType: hard
 
