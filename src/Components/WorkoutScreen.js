@@ -1,4 +1,7 @@
+<<<<<<< HEAD
 import { StatusBar } from "expo-status-bar";
+=======
+>>>>>>> coacher-webview
 import {
   Text,
   View,
@@ -7,19 +10,28 @@ import {
   KeyboardAvoidingView,
   Platform,
 } from "react-native";
+<<<<<<< HEAD
 import { useHeaderHeight } from "@react-navigation/elements";
 import { useState, useEffect } from "react";
 import * as Print from "expo-print";
 import { shareAsync } from "expo-sharing";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+=======
+import { useState, useEffect } from "react";
+import * as RNFS from '@dr.pogodin/react-native-fs';
+>>>>>>> coacher-webview
 import {
   storeDataObject,
   storeDataString,
   getDataObject,
   getDataString,
 } from "../store/store";
+<<<<<<< HEAD
 import { Formula } from "../utils/vdotCalc";
 import { secondsToTimeStr } from "../utils/time";
+=======
+import getTimeSheetHtml from "../utils/timeSheetHtml";
+>>>>>>> coacher-webview
 import { styles } from "../constants/styles";
 import WorkoutForm from "./WorkoutForm";
 import WorkoutItem from "./WorkoutItem";
@@ -28,7 +40,12 @@ export default function WorkoutScreen() {
   const [showWorkoutForm, setShowWorkoutForm] = useState(false);
   const [workouts, setWorkouts] = useState([]);
   const [nextId, setNextId] = useState(0);
+<<<<<<< HEAD
   // const [selectedPrinter, setSelectedPrinter] = useState();
+=======
+  const [showSuccess, setShowSuccess] = useState(false);
+  const [showError, setShowError] = useState(false);
+>>>>>>> coacher-webview
 
   useEffect(() => {
     const fetchData = async () => {
@@ -61,6 +78,7 @@ export default function WorkoutScreen() {
     setShowWorkoutForm(false);
   };
 
+<<<<<<< HEAD
   // See https://docs.expo.dev/versions/latest/sdk/print/#usage
 
   // const print = async () => {
@@ -197,6 +215,27 @@ export default function WorkoutScreen() {
     printToFile(html);
     // Note that this prints appropriately on ios/Android, but prints page html on web.
     // See workarounds at https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_media_queries/Printing#examples
+=======
+  const getTimeSheet = async (workout) => {
+    const athletes = await getDataObject("athletes");
+
+    const html = getTimeSheetHtml(workout, athletes);
+
+    var path = RNFS.DownloadDirectoryPath + `\\${workout.title}.html`
+    // write the file
+    // console.log(path)
+    RNFS.writeFile(path, html, 'utf8')
+      .then((success) => {
+        setShowSuccess(true);
+        console.debug(success);
+        setTimeout(() => setShowSuccess(false), 3000);
+      })
+      .catch((err) => {
+        setShowError(true);
+        console.debug(err)
+        setTimeout(() => setShowError(false), 3000);
+      });
+>>>>>>> coacher-webview
   };
 
   removeWorkoutById = async (workoutId) => {
@@ -207,7 +246,10 @@ export default function WorkoutScreen() {
 
   return (
     <View style={styles.container}>
+<<<<<<< HEAD
       <StatusBar style="auto" />
+=======
+>>>>>>> coacher-webview
       <Text>Workout Screen</Text>
       {/* <Text>{JSON.stringify(workouts)}</Text> */}{/* Debugging workouts remove later */}
       {/* Above for debugging workouts remove later */}
@@ -218,6 +260,11 @@ export default function WorkoutScreen() {
             workout={item}
             getTimeSheet={getTimeSheet}
             removeWorkoutById={removeWorkoutById}
+<<<<<<< HEAD
+=======
+            showSuccess={showSuccess}
+            showError={showError}
+>>>>>>> coacher-webview
           />
         )}
         numColumns={1}
@@ -227,9 +274,13 @@ export default function WorkoutScreen() {
       <KeyboardAvoidingView
         behavior={Platform.OS === "ios" ? "padding" : "height"}
         style={styles.container}
+<<<<<<< HEAD
         keyboardVerticalOffset={useHeaderHeight()}
       >
         {/* keyBoardVerticalOffset is necessary for this to work at all with the status bar */}
+=======
+      >
+>>>>>>> coacher-webview
         {!showWorkoutForm ? (
           <Button
             title="Add Workout"

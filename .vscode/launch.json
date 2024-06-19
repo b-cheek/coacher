@@ -1,0 +1,31 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Debug Windows",
+      "cwd": "${workspaceFolder}",
+      "type": "reactnative",
+      "request": "launch",
+      "platform": "windows"
+    },
+    {
+      "name": "Attach",
+      "port": 8081,
+      "request": "attach",
+      "skipFiles": [
+          "<node_internals>/**"
+      ],
+      "outFiles": [
+          "${workspaceFolder}/**/*"
+      ],
+      "type": "node"
+    },
+    {
+      "name": "Debug Windows Hermes - Experimental",
+      "request": "launch",
+      "type": "reactnativedirect",
+      "cwd": "${workspaceFolder}",
+      "platform": "windows"
+    }
+  ]
+}

@@ -1,4 +1,7 @@
+<<<<<<< HEAD
 import { StatusBar } from "expo-status-bar";
+=======
+>>>>>>> coacher-webview
 import {
   Text,
   View,
@@ -20,7 +23,10 @@ import { timeStrToSeconds } from "../utils/time";
 import { Formula } from "../utils/vdotCalc";
 import AthleteForm from "./AthleteForm";
 import AthleteItem from "./AthleteItem";
+<<<<<<< HEAD
 import AsyncStorage from "@react-native-async-storage/async-storage";
+=======
+>>>>>>> coacher-webview
 
 export default function RosterScreen() {
   const [showAthleteForm, setShowAthleteForm] = useState(false);
@@ -62,6 +68,7 @@ export default function RosterScreen() {
   };
 
   const addPR = async (athleteId, distance, time) => {
+<<<<<<< HEAD
     // const newAthletes = athletes.map((a) => {
     //   if (a.id === athleteId) {
     //     return {
@@ -73,6 +80,8 @@ export default function RosterScreen() {
     //   return a;
     // });
 
+=======
+>>>>>>> coacher-webview
     const newAthletes = athletes.map((a) => {
       if (a.id === athleteId) {
         return {
@@ -148,7 +157,10 @@ export default function RosterScreen() {
 
   return (
     <View style={styles.container}>
+<<<<<<< HEAD
       <StatusBar style="auto" />
+=======
+>>>>>>> coacher-webview
       {/* Keeping below to demo settings styling for possibility of pressables in that area */}
       {/* <View style={styles.settings}>
         <Button title="Show PR's" onPress={() => console.log('Show PRs')} />

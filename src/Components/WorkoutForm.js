@@ -17,7 +17,11 @@ export default function WorkoutForm({ onSubmit }) {
       />
       <Button
         title="Submit"
+<<<<<<< HEAD
         onPress={() => onSubmit(title, workout)}
+=======
+        onPress={() => onSubmit(title || workout, workout)}
+>>>>>>> coacher-webview
       />
     </View>
   );
