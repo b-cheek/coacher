@@ -16,9 +16,7 @@ export default function WorkoutItem({
       onPress={() => setExpanded(!expanded)}
       style={styles.listItemContainer}>
       <Text>
-        {workout.title
-          ? workout.title + ` (${workout.workout})`
-          : workout.workout}
+        {workout.title}
       </Text>
       {expanded
         ? [

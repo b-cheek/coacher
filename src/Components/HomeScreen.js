@@ -1,6 +1,5 @@
 import { Text, View, Button, Image } from "react-native";
 import { styles } from "../constants/styles";
-import Logo from "./Logo";
 
 export default function HomeScreen({ navigation }) {
   return (

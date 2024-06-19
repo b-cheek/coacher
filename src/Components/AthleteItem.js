@@ -33,7 +33,7 @@ export default function AthleteItem({ athlete, addPR, removeAthleteById, setVDOT
       {expanded ? (
         <Pressable>
           {/* Having nested pressable like this prevents clicks inside it from toggling expanded state in parent pressable
-                    Maybe I should abstract a PRForm? This is already short, idk if another tiny component is necessary. Also would require passing props again. */}
+          Maybe I should abstract a PRForm? This is already short, idk if another tiny component is necessary. Also would require passing props again. */}
           {!showPRForm ? (
             <Button title="Add PR" onPress={() => setShowPRForm(true)} />
           ) : null}

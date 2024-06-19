@@ -19,7 +19,6 @@ import { timeStrToSeconds } from "../utils/time";
 import { Formula } from "../utils/vdotCalc";
 import AthleteForm from "./AthleteForm";
 import AthleteItem from "./AthleteItem";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function RosterScreen() {
   const [showAthleteForm, setShowAthleteForm] = useState(false);
@@ -61,17 +60,6 @@ export default function RosterScreen() {
   };
 
   const addPR = async (athleteId, distance, time) => {
-    // const newAthletes = athletes.map((a) => {
-    //   if (a.id === athleteId) {
-    //     return {
-    //       // See https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax#overriding_properties
-    //       ...a,
-    //       prs: prs,
-    //     };
-    //   }
-    //   return a;
-    // });
-
     const newAthletes = athletes.map((a) => {
       if (a.id === athleteId) {
         return {

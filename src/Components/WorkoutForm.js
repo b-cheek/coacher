@@ -17,7 +17,7 @@ export default function WorkoutForm({ onSubmit }) {
       />
       <Button
         title="Submit"
-        onPress={() => onSubmit(title, workout)}
+        onPress={() => onSubmit(title || workout, workout)}
       />
     </View>
   );
