@@ -1,8 +1,5 @@
 import { StyleSheet } from "react-native";
-<<<<<<< HEAD
-=======
 import { PlatformColor } from "react-native-windows";
->>>>>>> coacher-webview
 
 export const styles = StyleSheet.create({
   container: {
@@ -12,10 +9,7 @@ export const styles = StyleSheet.create({
   },
 
   listItemContainer: {
-<<<<<<< HEAD
-=======
     borderColor: PlatformColor('SurfaceStrokeColorDefaultBrush'),
->>>>>>> coacher-webview
     padding: 10,
     marginVertical: 5,
     borderWidth: 1,
@@ -23,25 +17,19 @@ export const styles = StyleSheet.create({
     width: 200,
   },
 
-<<<<<<< HEAD
-=======
   logo: {
     width: 300,
     height: 300,
   },
 
->>>>>>> coacher-webview
   settings: { // Not currently in use, but search for application in commented code in RosterScreen.js
     position: 'absolute',
     top: 20,
     right: 20,
-<<<<<<< HEAD
-=======
   },
 
   headerStyle: {
     backgroundColor: PlatformColor('SolidBackgroundFillColorSecondary'),
     borderColor: PlatformColor('DividerStrokeColorDefault'),
->>>>>>> coacher-webview
   }
 });

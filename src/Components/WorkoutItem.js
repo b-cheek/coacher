@@ -1,10 +1,3 @@
-<<<<<<< HEAD
-import React, { useState } from "react";
-import { Text, Button, Pressable } from "react-native";
-import { styles } from "../constants/styles";
-
-export default function WorkoutItem({ workout, getTimeSheet, removeWorkoutById }) {
-=======
 import React, {useState} from 'react';
 import {Text, Button, Pressable, PlatformColor} from 'react-native';
 import {styles} from '../constants/styles';
@@ -16,26 +9,11 @@ export default function WorkoutItem({
   showSuccess,
   showError,
 }) {
->>>>>>> coacher-webview
   const [expanded, setExpanded] = useState(false);
 
   return (
     <Pressable
       onPress={() => setExpanded(!expanded)}
-<<<<<<< HEAD
-      style={styles.listItemContainer}
-    >
-      <Text>{(workout.title) ? workout.title + ` (${workout.workout})` : workout.workout}</Text>
-      {expanded ? (
-        <Button
-          title="Get Time Sheet"
-          onPress={() => getTimeSheet(workout)}
-        />
-      ) : null}
-      {expanded ? (
-        <Button title="Remove" onPress={() => removeWorkoutById(workout.id)} />
-      ) : null}
-=======
       style={styles.listItemContainer}>
       <Text>
         {workout.title}
@@ -55,7 +33,6 @@ export default function WorkoutItem({
             />,
           ]
         : null}
->>>>>>> coacher-webview
     </Pressable>
   );
 }
