@@ -1,37 +1,4 @@
 {
-<<<<<<< HEAD
-  "expo": {
-    "name": "coach-demo",
-    "slug": "coach-demo",
-    "version": "1.0.0",
-    "orientation": "portrait",
-    "icon": "./assets/icon.png",
-    "userInterfaceStyle": "light",
-    "splash": {
-      "image": "./assets/splash.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
-    },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
-    "jsengine": "hermes",
-    "ios": {
-      "supportsTablet": true,
-      "jsengine": "jsc"
-    },
-    "android": {
-      "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
-      }
-    },
-    "web": {
-      "favicon": "./assets/favicon.png"
-    }
-  }
-=======
   "name": "coacher",
   "displayName": "coacher"
->>>>>>> coacher-webview
 }
