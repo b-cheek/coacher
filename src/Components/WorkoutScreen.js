@@ -85,7 +85,7 @@ export default function WorkoutScreen() {
   };
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.screen, styles.container]}>
       <Text>Workout Screen</Text>
       {/* <Text>{JSON.stringify(workouts)}</Text> */}{/* Debugging workouts remove later */}
       {/* Above for debugging workouts remove later */}

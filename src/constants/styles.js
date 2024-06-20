@@ -2,9 +2,14 @@ import { StyleSheet } from "react-native";
 import { PlatformColor } from "react-native-windows";
 
 export const styles = StyleSheet.create({
+  screen: {
+    height: '100%',
+    padding: 20,
+  },
+
   container: {
-    flexWrap: 'wrap',
     alignItems: 'center',
+    gap: 20,
   },
 
   listItemContainer: {

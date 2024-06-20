@@ -130,7 +130,7 @@ export default function RosterScreen() {
   };
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.screen, styles.container]}>
       {/* Keeping below to demo settings styling for possibility of pressables in that area */}
       {/* <View style={styles.settings}>
         <Button title="Show PR's" onPress={() => console.log('Show PRs')} />
@@ -153,6 +153,7 @@ export default function RosterScreen() {
           />
         )}
         numColumns={1}
+        style={{flexGrow: 0}}
         keyExtractor={(athlete) => athlete.id}
       ></FlatList>
       {/* Note maybe adding more columns later for flexibility */}
