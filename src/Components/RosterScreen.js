@@ -1,12 +1,8 @@
 import {
-  Text,
   View,
   Button,
   FlatList,
-  KeyboardAvoidingView,
-  Platform,
 } from "react-native";
-import { useHeaderHeight } from "@react-navigation/elements";
 import { useState, useEffect } from "react";
 import { styles } from "../constants/styles";
 import {
@@ -160,12 +156,9 @@ export default function RosterScreen() {
         keyExtractor={(athlete) => athlete.id}
       ></FlatList>
       {/* Note maybe adding more columns later for flexibility */}
-      <KeyboardAvoidingView
-        behavior={Platform.OS === "ios" ? "padding" : "height"}
+      <View
         style={styles.container}
-        keyboardVerticalOffset={useHeaderHeight()}
       >
-        {/* keyBoardVerticalOffset is necessary for this to work at all with the status bar */}
         {!showAthleteForm ? (
           <Button
             title="Add Athlete"
@@ -185,7 +178,7 @@ export default function RosterScreen() {
           onPress={() => storeDataString("nextId", "0")}
         />
         <Button title="Clear All" onPress={() => AsyncStorage.clear()} /> */}
-      </KeyboardAvoidingView>
+      </View>
     </View>
   );
 }
