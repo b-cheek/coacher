@@ -4,15 +4,14 @@
   xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10"
   xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest"
   xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10"
-  xmlns:rescap="http://schemas.microsoft.com/appx/manifest/foundation/windows10/restrictedcapabilities"
-  IgnorableNamespaces="uap mp rescap">
+  IgnorableNamespaces="uap mp">
 
   <Identity
-    Name="9cb7d564-d3f8-441a-a47f-de0800a3d5b2"
+    Name="bec6b4b8-12b0-4eaa-bbbc-03f0e8fa17b7"
     Publisher="CN=bwc10"
-    Version="1.0.9.0" />
+    Version="1.0.2.0" />
 
-  <mp:PhoneIdentity PhoneProductId="9cb7d564-d3f8-441a-a47f-de0800a3d5b2" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
+  <mp:PhoneIdentity PhoneProductId="bec6b4b8-12b0-4eaa-bbbc-03f0e8fa17b7" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
   <Properties>
     <DisplayName>coacher</DisplayName>
@@ -39,7 +38,7 @@
         Square44x44Logo="Assets\Square44x44Logo.png"
         Description="coacher"
         BackgroundColor="transparent">
-        <uap:DefaultTile Wide310x150Logo="Assets\Wide310x150Logo.png" Square71x71Logo="Assets\SmallTile.png" Square310x310Logo="Assets\LargeTile.png"/>
+        <uap:DefaultTile Wide310x150Logo="Assets\Wide310x150Logo.png"/>
         <uap:SplashScreen Image="Assets\SplashScreen.png" />
       </uap:VisualElements>
     </Application>
@@ -47,6 +46,5 @@
 
   <Capabilities>
     <Capability Name="internetClient" />
-    <rescap:Capability Name="broadFileSystemAccess" />
   </Capabilities>
 </Package>

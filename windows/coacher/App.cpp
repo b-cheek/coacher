@@ -31,8 +31,6 @@ App::App() noexcept
 #if _DEBUG
     InstanceSettings().UseDirectDebugger(true);
     InstanceSettings().UseDeveloperSupport(true);
-    InstanceSettings().UseWebDebugger(false);
-    InstanceSettings().UseFastRefresh(true);
 #else
     InstanceSettings().UseDirectDebugger(false);
     InstanceSettings().UseDeveloperSupport(false);
