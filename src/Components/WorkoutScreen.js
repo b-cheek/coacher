@@ -14,7 +14,7 @@ import {
   getDataObject,
   getDataString,
 } from "../store/store";
-import getTimeSheetHtml from "../utils/timeSheetHtml";
+import { getTimeSheetHtml, getTimeSheetExcel } from "../utils/timeSheetHtml";
 import { styles } from "../constants/styles";
 import WorkoutForm from "./WorkoutForm";
 import WorkoutItem from "./WorkoutItem";
@@ -60,9 +60,12 @@ export default function WorkoutScreen() {
   const getTimeSheet = async (workout) => {
     const athletes = await getDataObject("athletes");
 
-    const html = getTimeSheetHtml(workout, athletes);
+    // const html = getTimeSheetHtml(workout, athletes);
 
-    var path = RNFS.DownloadDirectoryPath + `\\${workout.title}.html`
+    // var path = RNFS.DownloadDirectoryPath + `\\${workout.title}.html`
+    const html = getTimeSheetExcel(workout, athletes);
+
+    var path = RNFS.DownloadDirectoryPath + `\\${workout.title}.xlsx`
     // write the file
     // console.log(path)
     RNFS.writeFile(path, html, 'utf8')

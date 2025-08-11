@@ -1,7 +1,7 @@
 import { Formula } from "./vdotCalc";
 import { secondsToTimeStr } from "./time";
 
-export default getTimeSheetHtml = (workout, athletes) => {
+export const getTimeSheetHtml = (workout, athletes) => {
     const totalTimes = workout.workout.split(" ").reduce((acc, block) => {
         return acc + parseInt(block.split("x")[0]);
     }, 0);
@@ -102,5 +102,68 @@ export default getTimeSheetHtml = (workout, athletes) => {
         </div>
     </body>
     </html>
+`);
+}
+
+export const getTimeSheetExcel = (workout, athletes) => {
+    const totalTimes = workout.workout.split(" ").reduce((acc, block) => {
+        return acc + parseInt(block.split("x")[0]);
+    }, 0);
+    return (
+`
+        <html>
+        <body>
+        <table style="border-spacing: 5px;">
+            <thead>
+            <tr>
+                <th>Athlete</th>
+                ${workout.workout
+                .split(" ")
+                .map((block) => {
+                    return `<th>${block.split("x")[1]}</th>`;
+                })
+                .join("")}
+            </tr>
+            </thead>
+            <tbody>
+            ${athletes
+                .map((athlete) => {
+                let VDOT = parseFloat(athlete.VDOT);
+                return `<tr>
+                    <td>${athlete.firstName} ${athlete.lastName}</td>
+                    ${workout.workout
+                    .split(" ")
+                    .map((block) => {
+                        let intensity = block.charAt(block.length - 1);
+                        let res = "Failed";
+                        let distance = block.split("x")[1].slice(0, -1);
+                        switch (intensity) {
+                        // boilderplate for intensity values E, M, T, I, R
+                        case "E":
+                            res = Formula.getEasyPace(VDOT, distance);
+                            break;
+                        case "M":
+                            res = Formula.getMarathonPace(VDOT, distance);
+                            break;
+                        case "T":
+                            res = Formula.getThresholdPace(VDOT, distance);
+                            break;
+                        case "I":
+                            res = Formula.getIntervalPace(VDOT, distance);
+                            break;
+                        case "R":
+                            res = Formula.getRepetitionPace(VDOT, distance);
+                            break;
+                        }
+                        return `<td>${secondsToTimeStr(res * 60)}</td>`;
+                    })
+                    .join("")}
+                </tr>`;
+                })
+                .join("")}
+            </tbody>
+        </table>
+        </body>
+        </html>
 `);
 }
