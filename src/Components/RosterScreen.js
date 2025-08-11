@@ -143,7 +143,7 @@ export default function RosterScreen() {
       {/* <Text>{JSON.stringify(athletes)}</Text> */}
       {/* Above for debugging athletes, prs, remove later */}
       <FlatList
-        data={athletes}
+        data={athletes.sort((a, b) => a.lastName.localeCompare(b.lastName))}
         renderItem={({ item }) => (
           <AthleteItem
             athlete={item}
