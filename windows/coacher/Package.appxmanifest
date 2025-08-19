@@ -7,11 +7,11 @@
   IgnorableNamespaces="uap mp">
 
   <Identity
-    Name="bec6b4b8-12b0-4eaa-bbbc-03f0e8fa17b7"
+    Name="87ebe658-b5ca-42e1-a362-4ff01c356779"
     Publisher="CN=bwc10"
     Version="1.0.2.0" />
 
-  <mp:PhoneIdentity PhoneProductId="bec6b4b8-12b0-4eaa-bbbc-03f0e8fa17b7" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
+  <mp:PhoneIdentity PhoneProductId="87ebe658-b5ca-42e1-a362-4ff01c356779" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
   <Properties>
     <DisplayName>coacher</DisplayName>

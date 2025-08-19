@@ -4,9 +4,9 @@
     "native,Version=v0.0": {
       "Microsoft.JavaScript.Hermes": {
         "type": "Direct",
-        "requested": "[0.1.21, )",
-        "resolved": "0.1.21",
-        "contentHash": "5njCh+3eXTLOv7+8nOnp6nJ5C0r6it5ze54c0nuWleeDptuK8t3dEDB79XTU4D5DKNvAPlqJpgXRDOak5nYIug=="
+        "requested": "[0.0.0-2505.2001-0e4bc3b9, )",
+        "resolved": "0.0.0-2505.2001-0e4bc3b9",
+        "contentHash": "VNSUBgaGzJ/KkK3Br0b9FORkCgKqke54hi48vG42xRACIlxN+uLFMz0hRo+KHogz+Fsn+ltXicGwQsDVpmaCMg=="
       },
       "Microsoft.UI.Xaml": {
         "type": "Direct",
@@ -25,8 +25,8 @@
       },
       "boost": {
         "type": "Transitive",
-        "resolved": "1.76.0",
-        "contentHash": "p+w3YvNdXL8Cu9Fzrmexssu0tZbWxuf6ywsQqHjDlKFE5ojXHof1HIyMC3zDLfLnh80dIeFcEUAuR2Asg/XHRA=="
+        "resolved": "1.83.0",
+        "contentHash": "cy53VNMzysEMvhBixDe8ujPk67Fcj3v6FPHQnH91NYJNLHpc6jxa2xq9ruCaaJjE4M3YrGSHDi4uUSTGBWw6EQ=="
       },
       "Microsoft.Web.WebView2": {
         "type": "Transitive",
@@ -36,7 +36,7 @@
       "common": {
         "type": "Project",
         "dependencies": {
-          "boost": "[1.76.0, )"
+          "boost": "[1.83.0, )"
         }
       },
       "fmt": {
@@ -45,8 +45,8 @@
       "folly": {
         "type": "Project",
         "dependencies": {
-          "Fmt": "[1.0.0, )",
-          "boost": "[1.76.0, )"
+          "boost": "[1.83.0, )",
+          "fmt": "[1.0.0, )"
         }
       },
       "microsoft.reactnative": {
@@ -54,17 +54,17 @@
         "dependencies": {
           "Common": "[1.0.0, )",
           "Folly": "[1.0.0, )",
-          "Microsoft.JavaScript.Hermes": "[0.1.21, )",
+          "Microsoft.JavaScript.Hermes": "[0.0.0-2505.2001-0e4bc3b9, )",
           "Microsoft.UI.Xaml": "[2.8.0, )",
           "ReactCommon": "[1.0.0, )",
-          "boost": "[1.76.0, )"
+          "boost": "[1.83.0, )"
         }
       },
       "reactcommon": {
         "type": "Project",
         "dependencies": {
           "Folly": "[1.0.0, )",
-          "boost": "[1.76.0, )"
+          "boost": "[1.83.0, )"
         }
       },
       "reactnativeasyncstorage": {
@@ -75,13 +75,6 @@
         }
       },
       "reactnativefs": {
-        "type": "Project",
-        "dependencies": {
-          "Microsoft.ReactNative": "[1.0.0, )",
-          "Microsoft.UI.Xaml": "[2.8.0, )"
-        }
-      },
-      "rnscreens": {
         "type": "Project",
         "dependencies": {
           "Microsoft.ReactNative": "[1.0.0, )",
